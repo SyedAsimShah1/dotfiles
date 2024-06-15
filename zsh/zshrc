@@ -43,12 +43,11 @@ alias vim="nvim"
 # setting Oh My Post Prompt 
  eval "$(oh-my-posh init zsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/catppuccin_mocha.omp.json')"
 
-# Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
-
 # done to allow for WezTerm to properly handle paths for wsl
 . /etc/profile.d/wezterm.sh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
