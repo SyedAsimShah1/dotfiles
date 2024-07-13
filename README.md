@@ -17,3 +17,11 @@ Watch this video https://www.youtube.com/watch?v=fSfuHspXy5s
 ## Instal Tools, Deps and Make Symbolic Links
 Run the ./setupEnv.sh script and follow its instructions.
 
+## Wezterm
+1. Place ./wezterm/wezterm.lua config in the (windows) home folder.
+2. Place the ./wezterm/wezterm.sh script in /etc/profile.d/.
+3. For WSL, run the following command in an admin PowerShell to link the config
+```New-Item -ItemType SymbolicLink -Path "C:\Users\{user}\.wezterm.lua" -Target "\\wsl$\Ubuntu\home\{user}\dotfiles\wezterm\wezterm.lua"```
+
+## Bulding from source
+Build the following from source: fzf
