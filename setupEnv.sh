@@ -12,6 +12,9 @@ ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
 # Link zsh config
 ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
 
+# Link nvim config
+ln -s ~/dotfiles/nvim ~/.config/nvim
+
 # set zsh as default shell
 chsh -s $(which zsh)
 
