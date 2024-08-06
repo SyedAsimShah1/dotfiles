@@ -3,20 +3,6 @@ return {
 
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
-
-	-- { -- Adds git related signs to the gutter, as well as utilities for managing changes
-	-- 	"lewis6991/gitsigns.nvim",
-	-- 	opts = {
-	-- 		signs = {
-	-- 			add = { text = "+" },
-	-- 			change = { text = "~" },
-	-- 			delete = { text = "_" },
-	-- 			topdelete = { text = "‾" },
-	-- 			changedelete = { text = "~" },
-	-- 		},
-	-- 	},
-	-- },
-
 	-- Highlight todo, notes, etc in comments
 	{
 		"folke/todo-comments.nvim",
@@ -31,5 +17,31 @@ return {
 		-- See `:help ibl`
 		main = "ibl",
 		opts = {},
+	},
+	{
+		"mrcjkb/rustaceanvim",
+		version = "^5", -- Recommended
+		lazy = false, -- This plugin is already lazy
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+	},
+	{
+		"leath-dub/snipe.nvim",
+		keys = {
+			{
+				"<leader>ss",
+				function()
+					require("snipe").open_buffer_menu()
+				end,
+				desc = "Open Snipe buffer menu",
+			},
+		},
+		opts = {
+			ui = {
+				position = "center",
+			},
+			sort = "last",
+		},
 	},
 }
