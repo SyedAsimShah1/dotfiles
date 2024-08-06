@@ -3,7 +3,7 @@
 # Install dep
 sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update
-sudo apt install zsh tmux make gcc ripgrep unzip git xclip neovim tree -y
+sudo apt install zsh tmux make gcc ripgrep unzip git xclip neovim tree bat -y
 
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 # Link tmux config
