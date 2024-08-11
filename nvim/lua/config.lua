@@ -14,10 +14,6 @@ vim.opt.shiftwidth = 2 -- 2 spaces for indent width
 vim.opt.expandtab = true -- expand tab to spaces
 vim.opt.autoindent = true -- copy indent from current line when starting new one
 
--- Newline on CR and Shift Cr
-vim.keymap.set("n", "<CR>", '@="m`o<C-V><Esc>``"<CR>')
-vim.keymap.set("n", "<S-CR>", '@="m`O<C-V><Esc>``"<CR>')
-
 -- Make line numbers default
 vim.opt.number = true
 -- Enable relative line numbers
@@ -70,7 +66,14 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- For auto-session
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+-- For nvim-ufo
+vim.o.foldcolumn = "1" -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

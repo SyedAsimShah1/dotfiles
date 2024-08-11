@@ -135,6 +135,10 @@ return { -- LSP Configuration & Plugins
 		--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+		capabilities.textDocument.foldingRange = {
+			dynamicRegistration = false,
+			lineFoldingOnly = true,
+		}
 
 		local mason_registry = require("mason-registry")
 		local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
@@ -142,9 +146,9 @@ return { -- LSP Configuration & Plugins
 
 		local servers = {
 			clangd = {},
-			-- gopls = {},
+			gopls = {},
 			-- pyright = {},
-			-- rust_analyzer = {},
+			rust_analyzer = {},
 			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 			--
 			-- Some languages (like typescript) have entire language plugins that can be useful:
