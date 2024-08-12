@@ -32,6 +32,7 @@ return { -- Autoformat
 			typescript = { "prettierd" },
 			vue = { "prettierd" },
 			c = { "clang-format" },
+			sh = { "shfmt" },
 			-- Conform can also run multiple formatters sequentially
 			-- python = { "isort", "black" },
 			--

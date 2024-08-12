@@ -39,7 +39,7 @@ return { -- LSP Configuration & Plugins
 				end, "[G]oto Definition [V]ertical Split")
 
 				-- Find references for the word under your cursor.
-				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+				-- map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 
 				-- Jump to the implementation of the word under your cursor.
 				--  Useful when your language has ways of declaring types without an actual implementation.
@@ -172,6 +172,7 @@ return { -- LSP Configuration & Plugins
 			marksman = {},
 			html = {},
 			cssls = {},
+			bashls = {},
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes = { ...},
@@ -205,6 +206,8 @@ return { -- LSP Configuration & Plugins
 			"markdownlint",
 			"eslint_d",
 			"clang-format",
+			"shellcheck",
+			"shfmt",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
