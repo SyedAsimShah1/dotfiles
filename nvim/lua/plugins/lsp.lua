@@ -39,7 +39,7 @@ return { -- LSP Configuration & Plugins
 				end, "[G]oto Definition [V]ertical Split")
 
 				-- Find references for the word under your cursor.
-				-- map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 
 				-- Jump to the implementation of the word under your cursor.
 				--  Useful when your language has ways of declaring types without an actual implementation.
@@ -103,20 +103,20 @@ return { -- LSP Configuration & Plugins
 					})
 				end
 
-				vim.api.nvim_create_autocmd("CursorHold", {
-					buffer = event.buf,
-					callback = function()
-						local opts = {
-							focusable = false,
-							close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-							border = "rounded",
-							source = "always",
-							prefix = " ",
-							scope = "cursor",
-						}
-						vim.diagnostic.open_float(nil, opts)
-					end,
-				})
+				-- vim.api.nvim_create_autocmd("CursorHold", {
+				-- 	buffer = event.buf,
+				-- 	callback = function()
+				-- 		local opts = {
+				-- 			focusable = false,
+				-- 			close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+				-- 			border = "rounded",
+				-- 			source = "always",
+				-- 			prefix = " ",
+				-- 			scope = "cursor",
+				-- 		}
+				-- 		vim.diagnostic.open_float(nil, opts)
+				-- 	end,
+				-- })
 				-- The following autocommand is used to enable inlay hints in your
 				-- code, if the language server you are using supports them
 				--
@@ -155,7 +155,7 @@ return { -- LSP Configuration & Plugins
 			--    https://github.com/pmizio/typescript-tools.nvim
 			--
 			-- But for many setups, the LSP (`tsserver`) will work just fine
-			tsserver = {
+			ts_ls = {
 				init_options = {
 					plugins = {
 						{

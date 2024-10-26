@@ -8,12 +8,10 @@ return {
 				lualine_c = { { "filename", path = 1 } },
 			},
 			winbar = {
-				lualine_a = { { "buffers", hide_filename_extension = true } },
-				lualine_b = { "filetype", "progress" },
+				lualine_a = { { "filename", hide_filename_extension = true } },
 			},
 			inactive_winbar = {
-				lualine_a = { { "buffers", hide_filename_extension = true } },
-				lualine_b = { "filetype", "progress" },
+				lualine_a = { { "filename", hide_filename_extension = true } },
 			},
 		})
 	end,

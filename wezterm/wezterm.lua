@@ -13,7 +13,7 @@ config.color_scheme = "Catppuccin Mocha"
 config.font = wezterm.font("JetBrains Mono")
 config.font_size = 14
 
--- config.window_background_opacity = 0.85
+config.window_background_opacity = 0.90
 config.window_decorations = "RESIZE"
 config.window_close_confirmation = "AlwaysPrompt"
 config.default_workspace = "main"

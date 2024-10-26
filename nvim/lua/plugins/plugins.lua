@@ -67,10 +67,6 @@ return {
 		end,
 	},
 	{
-		"dnlhc/glance.nvim",
-		config = function()
-			vim.keymap.set("n", "gr", "<CMD>Glance references<CR>", { desc = "[G]oto [R]eferences" })
-			require("glance").setup()
-		end,
+		"bullets-vim/bullets.vim",
 	},
 }

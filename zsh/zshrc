@@ -4,8 +4,7 @@ autoload -Uz promptinit
 promptinit
 prompt adam1
 
-setopt histignorealldups sharehistory
-
+setopt histignorealldups NO_SHARE_HISTORY
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
@@ -39,11 +38,15 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 path+=('/home/asim/.local/bin')
 path+=('/usr/local/go/bin')
 
+
+DENO_INSTALL="/home/asim/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
 # Aliases
 alias vim="nvim"
 
 # setting Oh My Post Prompt 
- eval "$(oh-my-posh init zsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/catppuccin_mocha.omp.json')"
+eval "$(oh-my-posh init zsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/pure.omp.json')"
 
 # done to allow for WezTerm to properly handle paths for wsl
 . /etc/profile.d/wezterm.sh
@@ -55,3 +58,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(zoxide init zsh)"
+
+# add Pulumi to the PATH
+export PATH=$PATH:/home/asim/.pulumi/bin
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+source /home/linuxbrew/.linuxbrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
