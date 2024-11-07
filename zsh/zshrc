@@ -5,8 +5,7 @@ promptinit
 prompt adam1
 
 setopt histignorealldups NO_SHARE_HISTORY
-# Use emacs keybindings even if our EDITOR is set to vi
-bindkey -e
+
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
@@ -45,9 +44,6 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 # Aliases
 alias vim="nvim"
 
-# setting Oh My Post Prompt 
-eval "$(oh-my-posh init zsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/pure.omp.json')"
-
 # done to allow for WezTerm to properly handle paths for wsl
 . /etc/profile.d/wezterm.sh
 
@@ -65,3 +61,11 @@ export PATH=$PATH:/home/asim/.pulumi/bin
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 source /home/linuxbrew/.linuxbrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/linuxbrew/.linuxbrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+# setting Oh My Post Prompt 
+eval "$(oh-my-posh init zsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/pure.omp.json')"
+
+# VI mode
+bindkey -v
+export KEYTIMEOUT=1
