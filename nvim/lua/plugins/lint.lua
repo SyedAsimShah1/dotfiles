@@ -11,6 +11,7 @@ return {
 				javascript = { "eslint_d" },
 				vue = { "eslint_d" },
 				sh = { "shellcheck" },
+				python = { "ruff" },
 			}
 
 			-- To allow other plugins to add linters to require('lint').linters_by_ft,

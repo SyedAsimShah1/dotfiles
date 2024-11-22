@@ -176,6 +176,7 @@ return { -- LSP Configuration & Plugins
 			html = {},
 			cssls = {},
 			bashls = {},
+			basedpyright = {},
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes = { ...},
@@ -211,6 +212,7 @@ return { -- LSP Configuration & Plugins
 			"clang-format",
 			"shellcheck",
 			"shfmt",
+			"ruff",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
