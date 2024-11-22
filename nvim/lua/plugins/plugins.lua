@@ -22,24 +22,6 @@ return {
 		"nvim-treesitter/nvim-treesitter-context",
 	},
 	{
-		"leath-dub/snipe.nvim",
-		keys = {
-			{
-				"<leader>ss",
-				function()
-					require("snipe").open_buffer_menu()
-				end,
-				desc = "Open Snipe buffer menu",
-			},
-		},
-		opts = {
-			ui = {
-				position = "center",
-			},
-			sort = "last",
-		},
-	},
-	{
 		"windwp/nvim-ts-autotag",
 		config = function()
 			require("nvim-ts-autotag").setup({
@@ -69,4 +51,19 @@ return {
 	{
 		"bullets-vim/bullets.vim",
 	},
+	{
+		"ptdewey/yankbank-nvim",
+		dependencies = "kkharji/sqlite.lua",
+		config = function()
+			vim.keymap.set("n", "<leader>y", "<cmd>YankBank<CR>", { noremap = true })
+			require("yankbank").setup()
+		end,
+	},
+	{
+		"karb94/neoscroll.nvim",
+		config = function()
+			require("neoscroll").setup({})
+		end,
+	},
+	{ "kevinhwang91/nvim-bqf", event = "VeryLazy", opts = {} },
 }

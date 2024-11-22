@@ -21,6 +21,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
 				file_ignore_patterns = {
 					"node_modules",
 					".git/",
+					".obsidian/",
+					".stfolder/",
 				},
 			},
 			extensions = {
