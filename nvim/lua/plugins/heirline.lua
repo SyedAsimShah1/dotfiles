@@ -69,9 +69,9 @@ return {
 				end
 			end,
 			hl = {
-				fg = "#959da9",
-				bg = "#22252A",
-				bold = true,
+				-- fg = "#959da9",
+				-- bg = "#22252A",
+				-- bold = true,
 			},
 			on_click = {
 				name = "heirline_fold_click_handler",
