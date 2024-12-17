@@ -28,6 +28,7 @@ return { -- Autoformat
 			html = { "prettierd" },
 			markdown = { "prettierd" },
 			json = { "prettierd" },
+			yaml = { "prettierd" },
 			javascript = { "prettierd" },
 			typescript = { "prettierd" },
 			vue = { "prettierd" },
@@ -35,6 +36,10 @@ return { -- Autoformat
 			sh = { "shfmt" },
 			-- Conform can also run multiple formatters sequentially
 			python = { "ruff" },
+			hcl = { "packer_fmt" },
+			terraform = { "terraform_fmt" },
+			tf = { "terraform_fmt" },
+			["terraform-vars"] = { "terraform_fmt" },
 			--
 			-- You can use a sub-list to tell conform to run *until* a formatter
 			-- is found.

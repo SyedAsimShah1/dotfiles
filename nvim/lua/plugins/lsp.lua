@@ -191,7 +191,19 @@ return { -- LSP Configuration & Plugins
 					},
 				},
 			},
+			-- Default config for ansiblels validates with ansible-lint
+			ansiblels = {},
+			terraformls = {},
 		}
+		-- This ensures that files ending with .ansible are detected as yaml.ansible
+		-- so that ansiblels can attach to them
+		vim.filetype.add({ pattern = { [".*%.ansible%..*"] = "yaml.ansible" } })
+
+		vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
+		vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])
+		vim.cmd([[autocmd BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl]])
+		vim.cmd([[autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform]])
+		vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json]])
 
 		-- Ensure the servers and tools above are installed
 		--  To check the current status of installed tools and/or manually install
@@ -213,6 +225,8 @@ return { -- LSP Configuration & Plugins
 			"shellcheck",
 			"shfmt",
 			"ruff",
+			"ansible-lint",
+			"tflint",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

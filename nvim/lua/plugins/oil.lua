@@ -18,20 +18,30 @@ return {
 				float = {
 					-- Padding around the floating window
 					padding = 2,
-					max_width = 90,
-					max_height = 40,
-					-- border = "rounded",
+					max_width = 150,
+					-- max_height = 40,
+					border = "rounded",
 					win_options = {
-						winblend = 40,
+						winblend = 10,
 					},
 				},
 			})
 
 			-- Open parent directory in current window
-			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+			vim.keymap.set("n", "<space>-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 			-- Open parent directory in floating window
-			vim.keymap.set("n", "<space>-", require("oil").toggle_float)
+			vim.keymap.set("n", "-", require("oil").toggle_float)
+
+			-- vim.api.nvim_create_autocmd("User", {
+			-- 	pattern = "OilEnter",
+			-- 	callback = vim.schedule_wrap(function(args)
+			-- 		local oil = require("oil")
+			-- 		if vim.api.nvim_get_current_buf() == args.data.buf and oil.get_cursor_entry() then
+			-- 			oil.open_preview()
+			-- 		end
+			-- 	end),
+			-- })
 		end,
 	},
 }

@@ -30,6 +30,8 @@ return { -- Highlight, edit, and navigate code
 			"sql",
 			"toml",
 			"dart",
+			"terraform",
+			"hcl",
 		},
 		auto_install = true,
 		highlight = {
