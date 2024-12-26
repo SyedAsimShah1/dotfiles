@@ -26,12 +26,11 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 
 -- Newline
 vim.keymap.set("n", "<CR>", '@="m`o<C-V><Esc>``"<CR>')
--- vim.keymap.set("n", "<CR>", function()
--- 	-- if vim.fn.getwininfo(vim.fn.win_getid())[0]["quickfix"] == 1 then
--- 	-- 	return ""
--- 	-- end
--- 	return '@="m`o<C-V><Esc>``"<CR>'
--- end)
+
+-- vim.keymap.set("n", "<C-u>", function()
+-- 	vim.opt.scroll = math.floor(vim.api.nvim_win_get_height(0) / 8)
+-- 	return "<C-u>"
+-- end, { noremap = true, expr = true })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`

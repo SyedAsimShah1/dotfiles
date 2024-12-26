@@ -12,7 +12,7 @@ return {
 				vue = { "eslint_d" },
 				sh = { "shellcheck" },
 				python = { "ruff" },
-				yaml = { "yamllint" },
+				-- yaml = { "yamllint" },
 				terraform = { "terraform_validate" },
 				tf = { "terraform_validate" },
 			}
