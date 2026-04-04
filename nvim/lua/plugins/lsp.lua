@@ -2,8 +2,8 @@ return { -- LSP Configuration & Plugins
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		-- Automatically install LSPs and related tools to stdpath for Neovim
-		{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
-		"williamboman/mason-lspconfig.nvim",
+		{ "mason-org/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
+		"mason-org/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 		"saghen/blink.cmp",
@@ -11,10 +11,6 @@ return { -- LSP Configuration & Plugins
 		-- Useful status updates for LSP.
 		-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
 		{ "j-hui/fidget.nvim", opts = {} },
-
-		-- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
-		-- used for completion, annotations and signatures of Neovim apis
-		{ "folke/neodev.nvim", opts = {} },
 	},
 	config = function()
 		--  This function gets run when an LSP attaches to a particular buffer.
@@ -143,8 +139,8 @@ return { -- LSP Configuration & Plugins
 			lineFoldingOnly = true,
 		}
 
-		local mason_registry = require("mason-registry")
-		local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+		local vue_language_server_path = vim.fn.expand("$MASON/packages")
+			.. "/vue-language-server"
 			.. "/node_modules/@vue/language-server"
 
 		local servers = {
@@ -171,7 +167,7 @@ return { -- LSP Configuration & Plugins
 				filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 			},
 			yamlls = {},
-			volar = {},
+			vue_ls = {},
 			marksman = {},
 			html = {},
 			cssls = {},
@@ -194,6 +190,9 @@ return { -- LSP Configuration & Plugins
 			-- Default config for ansiblels validates with ansible-lint
 			ansiblels = {},
 			terraformls = {},
+			tailwindcss = {},
+			csharp_ls = {},
+			svelte = {},
 		}
 		-- This ensures that files ending with .ansible are detected as yaml.ansible
 		-- so that ansiblels can attach to them

@@ -2,7 +2,7 @@ return {
 	{ "tpope/vim-sleuth" }, -- Detect tabstop and shiftwidth automatically
 
 	-- "gc" to comment visual regions/lines
-	{ "numToStr/Comment.nvim", opts = {} },
+	-- { "numToStr/Comment.nvim", opts = {} },
 	-- Highlight todo, notes, etc in comments
 	{
 		"folke/todo-comments.nvim",
@@ -62,5 +62,26 @@ return {
 		"lucidph3nx/nvim-sops",
 		event = { "BufEnter" },
 		opts = {},
+	},
+	{
+		"sphamba/smear-cursor.nvim",
+		opts = {},
+	},
+	{
+		"folke/ts-comments.nvim",
+		opts = {},
+		event = "VeryLazy",
+		enabled = true,
+	},
+	{
+		"luckasRanarison/tailwind-tools.nvim",
+		name = "tailwind-tools",
+		build = ":UpdateRemotePlugins",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-telescope/telescope.nvim", -- optional
+			"neovim/nvim-lspconfig", -- optional
+		},
+		opts = {}, -- your configuration
 	},
 }

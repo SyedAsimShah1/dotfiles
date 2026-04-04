@@ -10,13 +10,15 @@ config.default_cwd = "~"
 
 -- For example, changing the color scheme:
 config.color_scheme = "Catppuccin Mocha"
-config.font = wezterm.font("JetBrains Mono")
+config.font = wezterm.font("Fira Code")
 config.font_size = 14
 
 config.window_background_opacity = 0.90
 config.window_decorations = "RESIZE"
 config.window_close_confirmation = "AlwaysPrompt"
 config.default_workspace = "main"
+
+config.max_fps = 144
 
 config.mouse_bindings = {
 	-- Ctrl-click will open the link under the mouse cursor
@@ -29,6 +31,9 @@ config.mouse_bindings = {
 
 -- Removing for now to reduce noise while I play with Tmux
 config.enable_tab_bar = false
+
+config.max_fps = 240
+config.animation_fps = 240
 
 -- and finally, return the configuration to wezterm
 return config

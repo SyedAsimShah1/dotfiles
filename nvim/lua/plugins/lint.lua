@@ -12,9 +12,10 @@ return {
 				vue = { "eslint_d" },
 				sh = { "shellcheck" },
 				python = { "ruff" },
-				-- yaml = { "yamllint" },
+				yaml = { "yamllint" },
 				terraform = { "terraform_validate" },
 				tf = { "terraform_validate" },
+				svelte = { "eslint_d" },
 			}
 
 			-- To allow other plugins to add linters to require('lint').linters_by_ft,

@@ -34,14 +34,14 @@ vim.keymap.set("n", "<CR>", '@="m`o<C-V><Esc>``"<CR>')
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
-vim.api.nvim_create_autocmd("FileType", {
-	desc = "Disable newline on enter for quick list",
-	group = vim.api.nvim_create_augroup("kill-newline-mapping", { clear = false }),
-	pattern = "qf",
-	callback = function()
-		vim.keymap.del("n", "<CR>")
-	end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	desc = "Disable newline on enter for quick list",
+-- 	group = vim.api.nvim_create_augroup("kill-newline-mapping", { clear = false }),
+-- 	pattern = "qf",
+-- 	callback = function()
+-- 		vim.keymap.del("n", "<CR>")
+-- 	end,
+-- })
 
 vim.api.nvim_create_autocmd("WinEnter", {
 	desc = "Disable newline on enter for quick list",

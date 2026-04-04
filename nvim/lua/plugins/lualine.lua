@@ -7,7 +7,7 @@ return {
 			return ret
 		end
 		require("lualine").setup({
-			options = { theme = "base16" },
+			options = { theme = "jellybeans" },
 			sections = {
 				lualine_c = { arrow, { "filename", path = 1 } },
 			},

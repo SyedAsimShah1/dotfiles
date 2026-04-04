@@ -24,6 +24,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 					".git/",
 					".obsidian/",
 					".stfolder/",
+					".venv/",
 				},
 			},
 			extensions = {

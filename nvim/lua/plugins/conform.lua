@@ -35,11 +35,12 @@ return { -- Autoformat
 			c = { "clang-format" },
 			sh = { "shfmt" },
 			-- Conform can also run multiple formatters sequentially
-			python = { "ruff" },
+			python = { "ruff_format" },
 			hcl = { "packer_fmt" },
 			terraform = { "terraform_fmt" },
 			tf = { "terraform_fmt" },
 			["terraform-vars"] = { "terraform_fmt" },
+			svelte = { "prettierd" },
 			--
 			-- You can use a sub-list to tell conform to run *until* a formatter
 			-- is found.
