@@ -1,4 +1,12 @@
 return {
+	-- "sainnhe/everforest",
+	-- lazy = false,
+	-- priority = 1000,
+	-- config = function()
+	-- 	vim.g.everforest_enable_italic = true
+	-- 	vim.cmd.colorscheme("everforest")
+	-- end,
+
 	-- "AlexvZyl/nordic.nvim",
 	-- lazy = false,
 	-- priority = 1000,
@@ -8,8 +16,8 @@ return {
 	-- 			theme = "light",
 	-- 		},
 	-- 	})
-	--
 	-- end,
+
 	-- "rebelot/kanagawa.nvim",
 	-- lazy = false,
 	-- priority = 1000,
@@ -25,31 +33,32 @@ return {
 	-- 	require("kanagawa-paper").setup()
 	-- 	vim.cmd("colorscheme kanagawa-paper")
 	-- end,
-	-- "uloco/bluloco.nvim",
-	-- lazy = false,
-	-- priority = 1000,
-	-- dependencies = { "rktjmp/lush.nvim" },
-	-- config = function()
-	-- 	require("bluloco").setup({
-	-- 		italics = true,
-	-- 		transparent = true,
-	-- 	})
-	-- 	vim.cmd("colorscheme bluloco")
-	-- end,
-	--
 
-	"sainnhe/sonokai",
+	"uloco/bluloco.nvim",
 	lazy = false,
 	priority = 1000,
+	dependencies = { "rktjmp/lush.nvim" },
 	config = function()
-		-- vim.g.sonokai_style = "andromeda"
-		-- Optionally configure and load the colorscheme
-		-- directly inside the plugin declaration.
-		vim.g.sonokai_enable_italic = true
-		vim.g.sonokai_style = "maia"
-		-- vim.g.sonokai_transparent_background = 2
-		vim.cmd.colorscheme("sonokai")
+		require("bluloco").setup({
+			italics = true,
+			-- transparent = true,
+		})
+		vim.cmd("colorscheme bluloco")
 	end,
+	--
+
+	-- "sainnhe/sonokai",
+	-- lazy = false,
+	-- priority = 1000,
+	-- config = function()
+	-- 	-- vim.g.sonokai_style = "andromeda"
+	-- 	-- Optionally configure and load the colorscheme
+	-- 	-- directly inside the plugin declaration.
+	-- 	vim.g.sonokai_enable_italic = true
+	-- 	vim.g.sonokai_style = "maia"
+	-- 	-- vim.g.sonokai_transparent_background = 2
+	-- 	vim.cmd.colorscheme("sonokai")
+	-- end,
 
 	-- "Koalhack/darcubox-nvim",
 	-- config = function()
@@ -59,16 +68,8 @@ return {
 	-- 		},
 	-- 	})
 	-- 	vim.cmd.colorscheme("darcubox")
+
 	--
-	-- "sainnhe/everforest",
-	-- lazy = false,
-	-- priority = 1000,
-	-- config = function()
-	-- 	-- Optionally configure and load the colorscheme
-	-- 	-- directly inside the plugin declaration.
-	-- 	vim.g.everforest_enable_italic = true
-	-- 	vim.cmd.colorscheme("everforest")
-	-- end,
 
 	-- Lazy
 	-- "olimorris/onedarkpro.nvim",

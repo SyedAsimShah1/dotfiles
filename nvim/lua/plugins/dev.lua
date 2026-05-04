@@ -13,17 +13,15 @@ return {
 	-- },
 	{
 		"SyedAsimShah1/quick-todo.nvim",
-		config = function()
-			require("quick-todo").setup({
-				keys = {
-					open = "+",
-				},
-				window = {
-					height = 0.5,
-					width = 0.5,
-					winblend = 10,
-				},
-			})
-		end,
+		opts = {
+			keys = {
+				open = "+",
+			},
+			window = {
+				height = 0.5,
+				width = 0.5,
+				winblend = 10,
+			},
+		},
 	},
 }

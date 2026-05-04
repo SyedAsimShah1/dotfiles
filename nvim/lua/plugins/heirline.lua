@@ -4,7 +4,14 @@ return {
 	config = function()
 		local foldlevel = vim.fn.foldlevel
 		local foldclosed = vim.fn.foldclosed
-		local getcurpos = vim.fn.getcurpos
+		local getcurpos = vim.api.nvim_win_get_cursor
+		local cursor_line = getcurpos(0)[1]
+
+		vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+			callback = function()
+				cursor_line = getcurpos(0)[1]
+			end,
+		})
 
 		local function is_virtual_line()
 			return vim.v.virtnum < 0
@@ -31,10 +38,9 @@ return {
 			{
 				provider = function()
 					local lnum = tostring(vim.v.relnum)
-					if vim.v.lnum == getcurpos()[2] then
+					if vim.v.lnum == cursor_line then
 						lnum = tostring(vim.v.lnum)
 					end
-
 					if is_virtual_line() then
 						return string.rep(" ", #lnum)
 					elseif is_wrapped_line() then
@@ -43,12 +49,9 @@ return {
 						return (#lnum == 1 and "  " or " ") .. lnum
 					end
 				end,
-
 				hl = function()
-					if vim.v.lnum == getcurpos()[2] then
-						return {
-							fg = "#FFD700",
-						}
+					if vim.v.lnum == cursor_line then
+						return { fg = "#FFD700" }
 					end
 					return nil
 				end,
@@ -68,26 +71,24 @@ return {
 					return ""
 				end
 			end,
-			hl = {
-				-- fg = "#959da9",
-				-- bg = "#22252A",
-				-- bold = true,
-			},
 			on_click = {
 				name = "heirline_fold_click_handler",
 				callback = function()
 					local line = vim.fn.getmousepos().line
-
 					if not_fold_start(line) then
 						return
 					end
-
-					vim.cmd.execute("'" .. line .. "fold" .. (fold_opened(line) and "close" or "open") .. "'")
+					if fold_opened(line) then
+						vim.cmd(line .. "foldclose")
+					else
+						vim.cmd(line .. "foldopen")
+					end
 				end,
 			},
 		}
 
 		local nmarks = 0
+
 		local GitSigns = {
 			init = function(self)
 				local ns_id = vim.api.nvim_get_namespaces()["gitsigns_signs_"]
@@ -101,8 +102,7 @@ return {
 					)
 					nmarks = #marks
 					if nmarks > 0 then
-						local hl_group = marks[1][4]["sign_hl_group"]
-						self.highlight = hl_group
+						self.highlight = marks[1][4]["sign_hl_group"]
 					else
 						self.highlight = nil
 					end
@@ -120,6 +120,7 @@ return {
 		}
 
 		local column = { GitSigns, Number, Fold }
+
 		require("heirline").setup({
 			statuscolumn = column,
 		})

@@ -1,18 +1,28 @@
 return {
 	"otavioschwanck/arrow.nvim",
 	dependencies = {
-		{ "nvim-tree/nvim-web-devicons" },
+		"echasnovski/mini.icons",
 	},
-	config = function()
-		require("arrow").setup({
-			show_icons = true,
-			leader_key = ";", -- Recommended to be a single key
-			buffer_leader_key = "m", -- Per Buffer Mappings
-			window = {
-				border = "single",
-			},
-		})
-		vim.keymap.set("n", "H", require("arrow.persist").previous)
-		vim.keymap.set("n", "L", require("arrow.persist").next)
-	end,
+	---@type arrow.Config
+	opts = {
+		show_icons = true,
+		leader_key = ";", -- Global bookmarks
+		buffer_leader_key = "m", -- Per-buffer bookmarks
+	},
+	keys = {
+		{
+			"H",
+			function()
+				require("arrow.persist").previous()
+			end,
+			desc = "Arrow: Previous Bookmark",
+		},
+		{
+			"L",
+			function()
+				require("arrow.persist").next()
+			end,
+			desc = "Arrow: Next Bookmark",
+		},
+	},
 }

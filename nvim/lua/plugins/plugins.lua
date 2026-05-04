@@ -1,87 +1,28 @@
 return {
+	{ "karb94/neoscroll.nvim", opts = {} },
+	{ "windwp/nvim-autopairs", event = "InsertEnter", config = true },
 	{ "tpope/vim-sleuth" }, -- Detect tabstop and shiftwidth automatically
-
-	-- "gc" to comment visual regions/lines
-	-- { "numToStr/Comment.nvim", opts = {} },
-	-- Highlight todo, notes, etc in comments
-	{
-		"folke/todo-comments.nvim",
-		event = "VimEnter",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = { signs = false },
-	},
-
-	{ -- Add indentation guides even on blank lines
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		opts = {},
-	},
-	{
-		"nvim-treesitter/nvim-treesitter-context",
-	},
+	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = {} },
+	{ "nvim-treesitter/nvim-treesitter-context" },
+	{ "bullets-vim/bullets.vim" },
+	{ "kevinhwang91/nvim-bqf", event = "VeryLazy", opts = {} },
+	{ "sphamba/smear-cursor.nvim", opts = {} },
+	{ "numToStr/Comment.nvim", opts = {} },
+	{ "stevearc/quicker.nvim", ft = "qf", opts = {} },
+	{ "nvim-mini/mini.surround", opts = {}, version = false },
+	{ "nvim-mini/mini.ai", opts = {}, version = false },
+	{ "OXY2DEV/markview.nvim", lazy = false, dependencies = { "saghen/blink.cmp" } },
+	{ "selimacerbas/markdown-preview.nvim", dependencies = { "selimacerbas/live-server.nvim" } },
+	{ "folke/which-key.nvim", event = "VeryLazy", opts = {} },
 	{
 		"windwp/nvim-ts-autotag",
-		config = function()
-			require("nvim-ts-autotag").setup({
-				opts = {
-					-- Defaults
-					enable_close = true, -- Auto close tags
-					enable_rename = true, -- Auto rename pairs of tags
-					enable_close_on_slash = false, -- Auto close on trailing </
-				},
-				-- Also override individual filetype configs, these take priority.
-				-- Empty by default, useful if one of the "opts" global settings
-				-- doesn't work well in a specific filetype
-				per_filetype = {
-					["html"] = {
-						enable_close = false,
-					},
-				},
-			})
-		end,
-	},
-	{
-		"bullets-vim/bullets.vim",
-	},
-	{
-		"ptdewey/yankbank-nvim",
-		dependencies = "kkharji/sqlite.lua",
-		config = function()
-			vim.keymap.set("n", "<leader>y", "<cmd>YankBank<CR>", { noremap = true })
-			require("yankbank").setup()
-		end,
-	},
-	{
-		"karb94/neoscroll.nvim",
-		config = function()
-			require("neoscroll").setup({})
-		end,
-	},
-	{ "kevinhwang91/nvim-bqf", event = "VeryLazy", opts = {} },
-	{
-		"lucidph3nx/nvim-sops",
-		event = { "BufEnter" },
-		opts = {},
-	},
-	{
-		"sphamba/smear-cursor.nvim",
-		opts = {},
-	},
-	{
-		"folke/ts-comments.nvim",
-		opts = {},
-		event = "VeryLazy",
-		enabled = true,
-	},
-	{
-		"luckasRanarison/tailwind-tools.nvim",
-		name = "tailwind-tools",
-		build = ":UpdateRemotePlugins",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"nvim-telescope/telescope.nvim", -- optional
-			"neovim/nvim-lspconfig", -- optional
+		opts = {
+			opts = {
+				enable_close = true,
+				enable_rename = true,
+				enable_close_on_slash = false,
+			},
+			per_filetype = { html = { enable_close = false } },
 		},
-		opts = {}, -- your configuration
 	},
 }

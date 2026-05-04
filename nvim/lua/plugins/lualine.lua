@@ -1,22 +1,56 @@
 return {
 	"nvim-lualine/lualine.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons", "otavioschwanck/arrow.nvim" },
-	config = function()
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+		"otavioschwanck/arrow.nvim",
+	},
+
+	opts = function()
+		local arrow_status = require("arrow.statusline")
+
 		local function arrow()
-			local ret = require("arrow.statusline").text_for_statusline_with_icons()
-			return ret
+			return arrow_status.text_for_statusline_with_icons()
 		end
-		require("lualine").setup({
-			options = { theme = "jellybeans" },
+
+		-- LSP client names
+		local function lsp()
+			local clients = vim.lsp.get_clients({ bufnr = 0 })
+			if #clients == 0 then
+				return ""
+			end
+			local names = {}
+			for _, c in ipairs(clients) do
+				table.insert(names, c.name)
+			end
+			return " " .. table.concat(names, ", ")
+		end
+
+		local winbar = {
+			lualine_a = { { "filename", path = 1, symbols = { modified = "[+]", readonly = "" } } },
+			lualine_b = { arrow },
+		}
+
+		return {
+			options = {
+				theme = "auto",
+				globalstatus = true,
+			},
 			sections = {
-				lualine_c = { arrow, { "filename", path = 1 } },
+				lualine_b = { arrow },
+				lualine_c = { { "filename", path = 1, symbols = { modified = "[+]", readonly = "" } } },
+				lualine_x = {
+					lsp,
+					{
+						"diagnostics",
+						sources = { "nvim_diagnostic" },
+						symbols = { error = "E:", warn = "W:", info = "I:", hint = "H:" },
+					},
+				},
+				lualine_y = { "branch" },
 			},
-			winbar = {
-				lualine_a = { { "filename", path = 1 }, arrow },
-			},
-			inactive_winbar = {
-				lualine_a = { { "filename", path = 1 }, arrow },
-			},
-		})
+
+			winbar = winbar,
+			inactive_winbar = winbar,
+		}
 	end,
 }
