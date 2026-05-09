@@ -1,18 +1,10 @@
-# Set up the prompt
-
-autoload -Uz promptinit
-promptinit
-prompt adam1
-
-setopt histignorealldups NO_SHARE_HISTORY
-
-
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+# HISTORY
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
+setopt HIST_IGNORE_ALL_DUPS NO_SHARE_HISTORY
 
-# Use modern completion system
+# COMPLETION
 autoload -Uz compinit
 compinit
 
@@ -20,72 +12,36 @@ zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
+zstyle ':completion:*' menu select=long
 eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=long
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose true
-
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+autoload -U +X bashcompinit && bashcompinit
+
+# PATH & ENVIRONMENT
 path+=('/home/asim/.local/bin')
 path+=('/usr/local/go/bin')
 
-
-DENO_INSTALL="/home/asim/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
-
-# Aliases
-alias vim="nvim"
-alias fzfvim='nvim "$(fzf)"'
-alias pn=pnpm
-
-# done to allow for WezTerm to properly handle paths for wsl
-. /etc/profile.d/wezterm.sh
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-eval "$(zoxide init zsh)"
-
-eval "$(luarocks path --no-bin)"
-
-# add Pulumi to the PATH
-export PATH=$PATH:/home/asim/.pulumi/bin
-
+# Homebrew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-source /home/linuxbrew/.linuxbrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /home/linuxbrew/.linuxbrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-source /home/linuxbrew/.linuxbrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+complete -o nospace -C "$(brew --prefix terraform)/bin/terraform" terraform
 
-# setting Oh My Post Prompt 
-eval "$(oh-my-posh init zsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/pure.omp.json')"
+# fnm (node version manager)
+FNM_PATH="/home/asim/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env)"
+fi
 
-# VI mode
-bindkey -v
-export KEYTIMEOUT=1
-
-# bun completions
-[ -s "/home/asim/.bun/_bun" ] && source "/home/asim/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /home/linuxbrew/.linuxbrew/Cellar/terraform/1.10.2/bin/terraform terraform
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
+# conda
 __conda_setup="$('/home/asim/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
@@ -97,15 +53,27 @@ else
     fi
 fi
 unset __conda_setup
-# <<< conda initialize <<<
 
-# fnm
-FNM_PATH="/home/asim/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/asim/.local/share/fnm:$PATH"
-  eval "`fnm env`"
-fi
+eval "$(zoxide init zsh)"
+eval "$(luarocks path --no-bin)"
 
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /home/linuxbrew/.linuxbrew/Cellar/terraform/1.10.2/bin/terraform terraform
-. "/home/asim/.deno/env"
+# WezTerm (WSL path handling)
+. /etc/profile.d/wezterm.sh
+
+# ALIASES
+alias vim="nvim"
+alias pn=pnpm
+
+# PLUGINS
+source /home/linuxbrew/.linuxbrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /home/linuxbrew/.linuxbrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+# PROMPT
+eval "$(oh-my-posh init zsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/probua.minimal.omp.json')"
+
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# SYNTAX HIGHLIGHTING (must be last)
+source /home/linuxbrew/.linuxbrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
